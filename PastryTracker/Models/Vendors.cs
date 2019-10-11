@@ -17,6 +17,7 @@ namespace PastryTracker.Models
         {
             Name = name;
             Description = description;
+            VendorOrders = new List<Order> { };
             idAssigner++;
             ID = idAssigner;
             VendorList.Add(this);
@@ -32,6 +33,23 @@ namespace PastryTracker.Models
                 }
             }
             return null;
+        }
+        
+        public static void CreateVendor(string name, string description)
+        {
+            if (name != null)
+            {
+                bool VendorExists = false;
+                foreach(Vendor vendor in VendorList)
+                    if (vendor.Name == name)
+                    {
+                        VendorExists = true;
+                    }
+                if (VendorExists == false)
+                {
+                     Vendor vendor = new Vendor (name, description);
+                }
+            }
         }
 
 

@@ -6,7 +6,6 @@ namespace PastryTracker.Models
     public class Order
     {
         public int ID { get; }
-
         public static List<Order> OrderList = new List<Order> { };
         public static int idAssigner { get; set;}
 

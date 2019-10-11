@@ -1,0 +1,29 @@
+@using PastryTracker.Models;
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Vendors</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+    <link href="~/css/styles.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="VendorName">@Model.Name</h2>
+      <p class="VendorDescription">@Model.Description</p>
+        @if (Model.VendorOrders.Count > 0)
+        {
+          <p>Orders:</p>
+          <ul>
+            @foreach (Order order in Model.VendorOrders)
+            {
+              <li>
+                @order.ID
+              </li>
+            }
+          </ul>
+        }
+      <a class="btn btn-success" href="/vendors">Back to Vendors</a>
+  </body>
+</html>

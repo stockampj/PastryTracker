@@ -12,7 +12,7 @@ namespace PastryTracker.Controllers
             return View();
         }
 
-        [HttpPost("/vendors")]
+        [HttpGet("/vendors")]
         public ActionResult Index()
         {
             return View();

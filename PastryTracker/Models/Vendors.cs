@@ -10,7 +10,7 @@ namespace PastryTracker.Models
         public string Description {get; set;}
         public List<Order> VendorOrders {get; set;}
 
-        public static List<Order> VendorList = new List<Vendor> { };
+        public static List<Vendor> VendorList = new List<Vendor> { };
         public static int idAssigner { get; set;}
 
         public Vendor(string name, string description)
@@ -34,7 +34,7 @@ namespace PastryTracker.Models
             return null;
         }
 
-        
+
         // public void CheckOffItem(int id)
         // {
         //     for (int i=0; i<PackList.Count; i++ )

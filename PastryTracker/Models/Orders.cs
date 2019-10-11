@@ -6,14 +6,28 @@ namespace PastryTracker.Models
     public class Order
     {
         public int ID { get; }
+        public string Name {get; set;}
+        public DateTime Date {get; set;}
+        public string Description {get; set;}
+        public float Cost {get; set;}
+        public bool Fullfilled {get; set;}
+        public bool PaymentReceived {get; set;}
+
         public static List<Order> OrderList = new List<Order> { };
         public static int idAssigner { get; set;}
 
-        public Order(string name, string size)
+        public Order(string name, DateTime date, string description, float cost)
         {
+            Name = name;
+            Date = date;
+            Description = description;
+            Cost = cost;
             idAssigner++;
             ID = idAssigner;
             OrderList.Add(this);
+            Fullfilled = false;
+            PaymentReceived = false;
+
         }
 
         // public void CheckOffItem(int id)

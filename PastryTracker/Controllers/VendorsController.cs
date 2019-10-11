@@ -23,7 +23,19 @@ namespace PastryTracker.Controllers
         [HttpPost("/vendors")]
         public ActionResult Index(string name, string description)
         {
-            Vendor vendor = new Vendor (name, description);
+            if (name != null)
+            {
+                bool VendorExists = false;
+                foreach(Vendor vendor in Vendor.VendorList)
+                    if (vendor.Name == name)
+                    {
+                        VendorExists = true;
+                    }
+                if (VendorExists == false)
+                {
+                     Vendor vendor = new Vendor (name, description);
+                }
+            }
             List<Vendor> vendorList = Vendor.VendorList;
             return View(vendorList);
         }

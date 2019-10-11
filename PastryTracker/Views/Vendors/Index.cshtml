@@ -10,6 +10,15 @@
   </head>
   <body>
     <div class="container">
-        <h2>Vendor List</h2>
+      <h2>Vendor List</h2>
+      <ul>
+      @foreach (Vendor vendor in Model)
+      {
+        <li id="@vendor.ID">
+          <a href=""> @vendor.Name </a>
+        </li>
+      }
+      </ul>
+      <a class="btn" href="/vendors/new">Add Vendor</a>
   </body>
 </html>

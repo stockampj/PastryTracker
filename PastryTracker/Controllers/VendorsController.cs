@@ -6,16 +6,27 @@ namespace PastryTracker.Controllers
 {
     public class VendorsController : Controller
     {
+
+        [HttpGet("/vendors")]
+        public ActionResult Index()
+        {
+            List<Vendor> vendorList = Vendor.VendorList;
+            return View(vendorList);
+        }
+        
         [HttpGet("/vendors/new")]
         public ActionResult New()
         {
             return View();
         }
 
-        [HttpGet("/vendors")]
-        public ActionResult Index()
+        [HttpPost("/vendors")]
+        public ActionResult Index(string name, string description)
         {
-            return View();
-        }   
+            Vendor vendor = new Vendor (name, description);
+            List<Vendor> vendorList = Vendor.VendorList;
+            return View(vendorList);
+        }
+
     }
 }

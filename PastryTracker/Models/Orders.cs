@@ -6,7 +6,7 @@ namespace PastryTracker.Models
     public class Order
     {
         public int ID { get; }
-        public string Name {get; set;}
+        public string VendorName {get; set;}
         public DateTime Date {get; set;}
         public string Description {get; set;}
         public float Cost {get; set;}
@@ -18,15 +18,15 @@ namespace PastryTracker.Models
 
         public Order(string name, DateTime date, string description, float cost)
         {
-            Name = name;
+            VendorName = name;
             Date = date;
             Description = description;
             Cost = cost;
+            Fullfilled = false;
+            PaymentReceived = false;
             idAssigner++;
             ID = idAssigner;
             OrderList.Add(this);
-            Fullfilled = false;
-            PaymentReceived = false;
 
         }
 

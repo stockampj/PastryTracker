@@ -10,7 +10,7 @@ namespace PastryTracker.Models
         public DateTime Date {get; set;}
         public string Description {get; set;}
         public float Cost {get; set;}
-        public bool Fullfilled {get; set;}
+        public bool Fulfilled {get; set;}
         public bool PaymentReceived {get; set;}
 
         public static List<Order> OrderList = new List<Order> { };
@@ -22,12 +22,11 @@ namespace PastryTracker.Models
             Date = date;
             Description = description;
             Cost = cost;
-            Fullfilled = false;
+            Fulfilled = false;
             PaymentReceived = false;
             idAssigner++;
-            ID = idAssigner;
+            ID = idAssigner+1000;
             OrderList.Add(this);
-
         }
 
         // public void CheckOffItem(int id)

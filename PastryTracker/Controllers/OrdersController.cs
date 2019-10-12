@@ -14,12 +14,15 @@ namespace PastryTracker.Controllers
             return View(vendor);
         }
 
-        [HttpPost("/vendors/@Model.ID/orders/")]
-        public ActionResult Create(string name, int year, int month, int day, string description, float cost)
+        [HttpPost("/vendors/{id}/orders/")]
+        public ActionResult Create(int id, string name, int year, int month, int day, string description, float cost)
         {
             DateTime date = new DateTime(year, month, day, 0, 0, 0);
+            Order order = new Order(name, date, description, cost);
+            Vendor vendor = Vendor.SearchID(id);
+            vendor.VendorOrders.Add(order);
             
-            return View();
+            return RedirectToAction("Index", "Vendors");
         }   
     }
 }

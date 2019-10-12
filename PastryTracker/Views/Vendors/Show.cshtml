@@ -18,8 +18,29 @@
           <ul>
             @foreach (Order order in Model.VendorOrders)
             {
-              <li>
-                @order.ID
+              <li id="@order.ID">
+                <div class="order-list">
+                  <span class="id">#@order.ID</span>
+                  <span class="date">@order.Date.ToString("d")</span>
+                  @if(order.Fulfilled == false)
+                  {
+                    <span class="status orange">Not Fulfilled</span>
+                  }
+                  else
+                  {
+                    <span class="status green">Fulfilled</span>
+                  }
+                  <br>
+                  <span>$@order.Cost</span>
+                  @if(order.PaymentReceived == false)
+                  {
+                    <span class="payment orange">Awaiting Payment</span>
+                  }
+                  else
+                  {
+                    <span class="payment green">Paid</span>
+                  }
+                </div>
               </li>
             }
           </ul>

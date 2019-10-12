@@ -28,11 +28,20 @@ namespace PastryTracker.Controllers
             return View(vendorList);
         }
         
-        [HttpGet("/vendors/{id}")]
-        public ActionResult Show(int id)
+        [HttpGet("/vendors/{vID}")]
+        public ActionResult Show(int vID)
         {
-            Vendor vendor = Vendor.SearchID(id);
+            Vendor vendor = Vendor.SearchID(vID);
             return View(vendor);
         }
+
+        [HttpGet("/vendors/{vID}/refresh")]
+        public ActionResult Refresh(Vendor vendor)
+        {
+            int vID = vendor.ID;
+        
+            return RedirectToAction("Show");
+        }   
+
     }
 }

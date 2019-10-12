@@ -14,15 +14,40 @@ namespace PastryTracker.Controllers
             return View(vendor);
         }
 
-        [HttpPost("/vendors/{id}/orders/")]
-        public ActionResult Create(int id, string name, int year, int month, int day, string description, float cost)
+        [HttpPost("/vendors/{vID}/orders/")]
+        public ActionResult Create(int vID, string name, int year, int month, int day, string description, float cost)
         {
             DateTime date = new DateTime(year, month, day, 0, 0, 0);
-            Order order = new Order(name, date, description, cost);
-            Vendor vendor = Vendor.SearchID(id);
+            Order order = new Order(name, vID, date, description, cost);
+            Vendor vendor = Vendor.SearchID(vID);
             vendor.VendorOrders.Add(order);
             
             return RedirectToAction("Index", "Vendors");
-        }   
+        }  
+        [HttpGet("/vendors/{vID}/order/{oID}")]
+        public ActionResult Show(int oID)
+        {
+            Order order = Order.SearchID(oID);
+            return View(order);
+        }
+        [HttpGet("/orders/{id}/edit")]
+        public ActionResult Edit(int id)
+        {
+            Order order = Order.SearchID(id);
+            return View(order);
+        }
+
+        [HttpPost("/vendors/{vID}/orders/{oID}")]
+        public ActionResult Show(int oID, int year, int month, int day, string description, float cost, bool fulfilled, bool paymentreceived)
+        {
+            DateTime date = new DateTime(year, month, day, 0, 0, 0);
+            Order order = Order.SearchID(oID);
+            order.Date = date;
+            order.Description = description;
+            order.Cost = cost;
+            order.PaymentReceived = paymentreceived;
+            order.Fulfilled = fulfilled;
+            return View(order);
+        }
     }
 }

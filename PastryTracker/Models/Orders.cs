@@ -7,6 +7,7 @@ namespace PastryTracker.Models
     {
         public int ID { get; }
         public string VendorName {get; set;}
+        public int VendorID {get; set;}
         public DateTime Date {get; set;}
         public string Description {get; set;}
         public float Cost {get; set;}
@@ -16,9 +17,10 @@ namespace PastryTracker.Models
         public static List<Order> OrderList = new List<Order> { };
         public static int idAssigner { get; set;}
 
-        public Order(string name, DateTime date, string description, float cost)
+        public Order(string name, int vID, DateTime date, string description, float cost)
         {
             VendorName = name;
+            VendorID = vID;
             Date = date;
             Description = description;
             Cost = cost;

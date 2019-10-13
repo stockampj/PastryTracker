@@ -34,14 +34,12 @@ namespace PastryTracker.Controllers
             Vendor vendor = Vendor.SearchID(vID);
             return View(vendor);
         }
-
-        [HttpGet("/vendors/{vID}/refresh")]
-        public ActionResult Refresh(Vendor vendor)
+        [HttpGet("/vendors/show")]
+        public ActionResult Show()
         {
-            int vID = vendor.ID;
-        
-            return RedirectToAction("Show");
-        }   
-
+            Vendor vendor = Vendor.getActive();
+            return View(vendor);
+        }
+  
     }
 }

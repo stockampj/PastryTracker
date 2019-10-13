@@ -8,6 +8,7 @@ namespace PastryTracker.Models
         public int ID { get; }
         public string Name {get; set;}
         public string Description {get; set;}
+        public bool Active {get; set;}
         public List<Order> VendorOrders {get; set;}
 
         public static List<Vendor> VendorList = new List<Vendor> { };
@@ -17,6 +18,7 @@ namespace PastryTracker.Models
         {
             Name = name;
             Description = description;
+            Active = false;
             VendorOrders = new List<Order> { };
             idAssigner++;
             ID = idAssigner;
@@ -51,18 +53,33 @@ namespace PastryTracker.Models
                 }
             }
         }
+        public static void setActive(int id)
+        {
+            foreach (Vendor vendor in VendorList)
+            {
+                vendor.Active = false;
+                if (vendor.ID == id)
+                {
+                    vendor.Active = true;
+                }
+            }
+        }
 
 
-        // public void CheckOffItem(int id)
-        // {
-        //     for (int i=0; i<PackList.Count; i++ )
-        //     {
-        //         if (PackList[i].ID == id)
-        //         {
-        //             PackList[i].Packed = true;
-        //         }
-        //     }
-        // }
+        public static Vendor getActive()
+        {
+            Vendor activeVendor= VendorList[0];
+            for (int i=0; i<VendorList.Count; i++)
+            {
+                if (VendorList[i].Active == true)
+                {
+                    activeVendor = VendorList[i];
+                }
+            }
+            return activeVendor;
+        }
+
+
 
     }
 }

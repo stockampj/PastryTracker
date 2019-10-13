@@ -21,9 +21,11 @@ namespace PastryTracker.Controllers
             Order order = new Order(name, vID, date, description, cost);
             Vendor vendor = Vendor.SearchID(vID);
             vendor.VendorOrders.Add(order);
+            Vendor.setActive(vendor.ID);
             
-            return RedirectToAction("Index", "Vendors");
-        }  
+            return RedirectToAction("Show", "Vendors");
+        }
+          
         [HttpGet("/vendors/{vID}/order/{oID}")]
         public ActionResult Show(int oID)
         {

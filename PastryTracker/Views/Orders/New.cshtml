@@ -11,7 +11,7 @@
   <body>
     <div class="container">
       <h2>New Order</h2>
-      <form action="/vendors/@Model.ID/orders/" method="post">
+      <form action="/vendors/@Model.ID" method="post">
         
         <p>
         <label for="name">Vendor: </label>
@@ -21,7 +21,6 @@
 
         <p><label>Date: </label>
         <select id="year" name="year">
-          <!-- <option value="select">Year</option> -->
           @{
           DateTime currentDate = DateTime.Today;
           int thisYear = currentDate.Year;
@@ -35,19 +34,28 @@
         </select>
 
         <select id="month" name="month">
-          <!-- <option value="select">Month</option> -->
           @for (int i=1; i <= 12; i++)
           {
+            string selected = "";
+            @if (currentDate.Month == i)
+            {
+              selected = "selected";
+            }
             int month = i;
-            <option value="@month">@month</option>
+            <option value="@month" @selected>@month</option>
           }
         </select>
+
         <select id="day" name="day">
-          <!-- <option value="select">Day</option> -->
           @for (int i=1; i <= 31; i++)
           {
+            string selected = "";
+            @if (currentDate.Day == i)
+            {
+              selected = "selected";
+            }
             int day = i;
-            <option value="@day">@day</option>
+            <option value="@day" @selected>@day</option>
           }
         </select>
         </p>
@@ -61,7 +69,8 @@
         <input id="cost" name="cost" type="text" value="0.00">
         <br>
         
-        <button class="btn" type="submit">Add Order</button>
+        <button class="btn btn-success green" type="submit">Add Order</button>
+        <a class="btn btn-warning orange" href="/vendors/@Model.ID">Cancel Order</a>
       </form>
   </body>
 </html>

@@ -64,10 +64,12 @@
         </select>
         </p>
 
+      <p>
       <label for="description">Description: </label>
       <input id="description" name="description" type="text" value="@Model.Description">
+      </p>
       
-      <br>
+      <p>
       <label for="fulfilled">Delivery Status: </label> 
       <select name="fulfilled" id="fulfilled">
         @if(Model.Fulfilled == false)
@@ -81,8 +83,9 @@
           <option value="false">Not Fulfilled</option>
         }
       </select>
+      </p>
       
-      <br>
+      <p>
       <label for="paymentreceived">Payment Status: </label> 
       <select name="paymentreceived" id="paymentreceived">
         @if(Model.PaymentReceived == false)
@@ -96,14 +99,15 @@
           <option value="false">Not Received</option>
         }
       </select>
+      </p>
       
-      <br>
+      <p>
       <label for="cost">Cost: $</label>
       <input id="cost" name="cost" type="text" value="@Model.Cost">
-      <br>
+      </p>
 
-      <button type="submit" class="btn btn-success">Update Order</button>        
-      <a class="btn btn-success" href="/vendors">Back to Vendors</a>
+      <button type="submit" class="btn btn-success">Update Order</button>
+      <a class="btn btn-success" href="/vendors/@Model.VendorID">Back to Vendor</a>        
       </form>
   </body>
 </html>

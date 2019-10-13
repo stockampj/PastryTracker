@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PastryTracker.Models;
 using System.Collections.Generic;
+using System;
 
 namespace PastryTracker.Controllers
 {
@@ -34,11 +35,20 @@ namespace PastryTracker.Controllers
             Vendor vendor = Vendor.SearchID(vID);
             return View(vendor);
         }
-        [HttpGet("/vendors/show")]
-        public ActionResult Show()
+
+        [HttpPost("/vendors/{vID}")]
+        public ActionResult Create(int vID, string name, int year, int month, int day, string description, float cost)
         {
-            Vendor vendor = Vendor.getActive();
-            return View(vendor);
+            Vendor vendor = Vendor.SearchID(vID);
+            DateTime date = new DateTime(year, month, day, 0, 0, 0);
+            if (description != null)
+            {
+            Order order = new Order(name, vID, date, description, cost);
+            vendor.VendorOrders.Add(order);
+            }
+            Vendor.setActive(vendor.ID);
+            
+            return View("Show", vendor);
         }
   
     }

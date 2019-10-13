@@ -14,17 +14,6 @@ namespace PastryTracker.Controllers
             return View(vendor);
         }
 
-        [HttpPost("/vendors/{vID}/orders/")]
-        public ActionResult Create(int vID, string name, int year, int month, int day, string description, float cost)
-        {
-            DateTime date = new DateTime(year, month, day, 0, 0, 0);
-            Order order = new Order(name, vID, date, description, cost);
-            Vendor vendor = Vendor.SearchID(vID);
-            vendor.VendorOrders.Add(order);
-            Vendor.setActive(vendor.ID);
-            
-            return RedirectToAction("Show", "Vendors");
-        }
           
         [HttpGet("/vendors/{vID}/order/{oID}")]
         public ActionResult Show(int oID)
@@ -32,7 +21,7 @@ namespace PastryTracker.Controllers
             Order order = Order.SearchID(oID);
             return View(order);
         }
-        [HttpGet("/orders/{id}/edit")]
+        [HttpGet("/vendors/{vID}/orders/{id}/edit")]
         public ActionResult Edit(int id)
         {
             Order order = Order.SearchID(id);

@@ -11,10 +11,10 @@
   <body>
     <div class="container">
       <h2 class="VendorName">@Model.VendorName</h2>
-      <p>Order: <span class="id">#@Model.ID</span></p>
-      <p>Date: <span class="date">@Model.Date.ToString("d")</span></p>
-      <p class="OrderDescription">Description: @Model.Description</p>
-      <p>Delivery Status: 
+      <p><label>Order:</label> <span class="id">#@Model.ID</span></p>
+      <p><label>Date:</label> <span class="date">@Model.Date.ToString("d")</span></p>
+      <p><label>Description:</label> <span class="OrderDescription">@Model.Description<span></p>
+      <p><label>Delivery Status:</label> 
       @if(Model.Fulfilled == false)
       {
         <span class="badge status orange">Not Fulfilled</span>
@@ -24,7 +24,7 @@
         <span class="badge status green">Fulfilled</span>
       }
       </p>
-      <p>Payment Status: 
+      <p><label>Payment Status:</label> 
       @if(Model.PaymentReceived == false)
       {
         <span class="badge payment orange">Awaiting Payment</span>
@@ -34,9 +34,10 @@
         <span class="badge payment green">Paid</span>
       }
       </p>
-      <p>Cost: <span>$@Model.Cost</span></p>
+      <p><label>Cost:</label> <span>$@Model.Cost</span></p>
 
-      <a class="btn btn-success" href="/orders/@Model.ID/edit">Edit this Order</a>        
-      <a class="btn btn-success" href="/vendors">Back to Vendors</a>
+      <a class="btn btn-success" href="/vendors/@Model.VendorID/orders/@Model.ID/edit">Edit this Order</a>        
+      <a class="btn btn-success" href="/vendors/@Model.VendorID">Back to Vendor</a>
+      <a class="btn btn-success" href="/vendors">Show all Vendors</a>
   </body>
 </html>

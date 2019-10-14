@@ -36,7 +36,7 @@ namespace PastryTracker.Controllers
             return View(vendor);
         }
 
-        [HttpPost("/vendors/{vID}")]
+        [HttpPost("/vendors/{vID}/orders")]
         public ActionResult Create(int vID, string name, int year, int month, int day, string description, float cost)
         {
             Vendor vendor = Vendor.SearchID(vID);

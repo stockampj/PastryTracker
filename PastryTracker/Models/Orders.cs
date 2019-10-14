@@ -31,16 +31,6 @@ namespace PastryTracker.Models
             OrderList.Add(this);
         }
 
-        // public void CheckOffItem(int id)
-        // {
-        //     for (int i=0; i<PackList.Count; i++ )
-        //     {
-        //         if (PackList[i].ID == id)
-        //         {
-        //             PackList[i].Packed = true;
-        //         }
-        //     }
-        // }
         public static Order SearchID(int id)
         {
             for(int i=0;i< OrderList.Count;i++)

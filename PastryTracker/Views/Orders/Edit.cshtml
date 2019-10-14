@@ -1,107 +1,108 @@
 @using PastryTracker.Models;
 
 @{
-  Layout = "_Layout";
+Layout = "_Layout";
 }
+<div class="form-div">
+<div class="holder">
+  <h2 class="VendorName">@Model.VendorName</h2>
+  <form action="/vendors/@Model.VendorID/orders/@Model.ID" method="post">
+  <p><label>Order:</label> <span class="id">#@Model.ID</span></p>      
+  <input class="hidden" id="ID" name="ID" type="text" value="@Model.ID">     
+    <p><label>Date: </label>
+    <select id="year" name="year">
+      @{
+        DateTime originalDate = @Model.Date;
+        int originalYear = originalDate.Year;
+        int originalMonth = originalDate.Month;
+        int originalDay = originalDate.Day;
 
-    <div class="container">
-      <h2 class="VendorName">@Model.VendorName</h2>
-      <form action="/vendors/@Model.VendorID/orders/@Model.ID" method="post">
-      <p><label>Order:</label> <span class="id">#@Model.ID</span></p>      
-      <input class="hidden" id="ID" name="ID" type="text" value="@Model.ID">     
-        <p><label>Date: </label>
-        <select id="year" name="year">
-          @{
-            DateTime originalDate = @Model.Date;
-            int originalYear = originalDate.Year;
-            int originalMonth = originalDate.Month;
-            int originalDay = originalDate.Day;
+        DateTime currentDate = DateTime.Today;
+      }
 
-            DateTime currentDate = DateTime.Today;
-          }
+      @for (int i=-2; i<=2; i++)
+      {
+        string selected = "";
+        @if (originalYear == currentDate.Year+i)
+        {
+          selected = "selected";
+        }
+        <option value="@(currentDate.Year+i)" @selected>@(currentDate.Year+i)</option>
+      }
+    </select>
+
+    <select id="month" name="month">
+      <!-- <option value="select">Month</option> -->
+      @for (int j=1; j <= 12; j++)
+      {
+        string selected = "";
+        @if (originalMonth == j)
+        {
+          selected = "selected";
+        }
+        int month = j;
+        <option value="@month" @selected>@month</option>
+      }
+    </select>
+    <select id="day" name="day">
+      <!-- <option value="select">Day</option> -->
+      @for (int k=1; k <= 31; k++)
+      {
+        string selected = "";
+        @if (originalDate.Day == k)
+        {
+          selected = "selected";
+        }
+        int day = k;
+        <option value="@day" @selected>@day</option>
+      }
+    </select>
+    </p>
+
+  <p>
+  <label for="description">Description: </label>
+  <input id="description" name="description" type="text" value="@Model.Description">
+  </p>
   
-          @for (int i=-2; i<=2; i++)
-          {
-            string selected = "";
-            @if (originalYear == currentDate.Year+i)
-            {
-              selected = "selected";
-            }
-            <option value="@(currentDate.Year+i)" @selected>@(currentDate.Year+i)</option>
-          }
-        </select>
+  <p>
+  <label for="fulfilled">Delivery Status: </label> 
+  <select name="fulfilled" id="fulfilled">
+    @if(Model.Fulfilled == false)
+    {
+      <option value="true">Fulfilled</option>
+      <option value="false" selected>Not Fulfilled</option>
+    }
+    else
+    {
+      <option value="true" selected>Fulfilled</option>
+      <option value="false">Not Fulfilled</option>
+    }
+  </select>
+  </p>
+  
+  <p>
+  <label for="paymentreceived">Payment Status: </label> 
+  <select name="paymentreceived" id="paymentreceived">
+    @if(Model.PaymentReceived == false)
+    {
+      <option value="true">Paid</option>
+      <option value="false" selected>Not Received</option>
+    }
+    else
+    {
+      <option value="true" selected>Paid</option>
+      <option value="false">Not Received</option>
+    }
+  </select>
+  </p>
+  
+  <p>
+  <label for="cost">Cost: $</label>
+  <input id="cost" name="cost" type="text" value="@Model.Cost">
+  </p>
 
-        <select id="month" name="month">
-          <!-- <option value="select">Month</option> -->
-          @for (int j=1; j <= 12; j++)
-          {
-            string selected = "";
-            @if (originalMonth == j)
-            {
-              selected = "selected";
-            }
-            int month = j;
-            <option value="@month" @selected>@month</option>
-          }
-        </select>
-        <select id="day" name="day">
-          <!-- <option value="select">Day</option> -->
-          @for (int k=1; k <= 31; k++)
-          {
-            string selected = "";
-            @if (originalDate.Day == k)
-            {
-              selected = "selected";
-            }
-            int day = k;
-            <option value="@day" @selected>@day</option>
-          }
-        </select>
-        </p>
-
-      <p>
-      <label for="description">Description: </label>
-      <input id="description" name="description" type="text" value="@Model.Description">
-      </p>
-      
-      <p>
-      <label for="fulfilled">Delivery Status: </label> 
-      <select name="fulfilled" id="fulfilled">
-        @if(Model.Fulfilled == false)
-        {
-          <option value="true">Fulfilled</option>
-          <option value="false" selected>Not Fulfilled</option>
-        }
-        else
-        {
-          <option value="true" selected>Fulfilled</option>
-          <option value="false">Not Fulfilled</option>
-        }
-      </select>
-      </p>
-      
-      <p>
-      <label for="paymentreceived">Payment Status: </label> 
-      <select name="paymentreceived" id="paymentreceived">
-        @if(Model.PaymentReceived == false)
-        {
-          <option value="true">Paid</option>
-          <option value="false" selected>Not Received</option>
-        }
-        else
-        {
-          <option value="true" selected>Paid</option>
-          <option value="false">Not Received</option>
-        }
-      </select>
-      </p>
-      
-      <p>
-      <label for="cost">Cost: $</label>
-      <input id="cost" name="cost" type="text" value="@Model.Cost">
-      </p>
-
-      <button type="submit" class="btn btn-success">Update Order</button>
-      <a class="btn btn-success" href="/vendors/@Model.VendorID">Back to Vendor</a>        
-      </form>
-</div@using PastryTracker.Models;>
+  <button type="submit" class="btn btn-success">Update Order</button>
+  <a class="btn btn-success" href="/vendors/@Model.VendorID">Back to Vendor</a>        
+  </form>
+</div>
+</div>

@@ -2,15 +2,17 @@
   Layout = "_Layout";
 }
 
-<div class="container">
+<div class="form-div">
+<div class="holder">
   <h2>New Vendor</h2>
   <form action="/vendors" method="post">
-  <label for="name">Vendor Name</label>
+  <label for="name">Vendor Name: </label>
   <input id="name" name="name" type="text">
   <br>
-  <label for="description">Description</label>
+  <label for="description">Description: </label>
   <input id="description" name="description" type="text">
   <br>
-  <button class="btn" type="submit">Add Vendor</button>
+  <button class="btn btn-success" type="submit">Add Vendor</button>
   </form>
+</div>
 </div>

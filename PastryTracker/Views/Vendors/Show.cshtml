@@ -4,7 +4,8 @@
   Layout = "_Layout";
 }
 
-<div class="container">
+<div class="form-div">
+<div class="holder">
   <h2 class="VendorName">@Model.Name</h2>
   <p class="VendorDescription">@Model.Description</p>
     @if (Model.VendorOrders.Count > 0)
@@ -45,4 +46,5 @@
     }
   <a class="btn btn-success" href="/vendors/@Model.ID/orders/new">Add an order</a>        
   <a class="btn btn-success" href="/vendors">Back to Vendors</a>
+</div>
 </div>

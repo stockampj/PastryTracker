@@ -45,9 +45,7 @@ namespace PastryTracker.Controllers
             {
             Order order = new Order(name, vID, date, description, cost);
             vendor.VendorOrders.Add(order);
-            }
-            Vendor.setActive(vendor.ID);
-            
+            }            
             return View("Show", vendor);
         }
   

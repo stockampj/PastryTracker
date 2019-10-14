@@ -1,43 +1,37 @@
 @using PastryTracker.Models;
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <title>Order @Model.ID</title>
-    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
-    <link href="~/css/styles.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
-    <div class="container">
-      <h2 class="VendorName">@Model.VendorName</h2>
-      <p><label>Order:</label> <span class="id">#@Model.ID</span></p>
-      <p><label>Date:</label> <span class="date">@Model.Date.ToString("d")</span></p>
-      <p><label>Description:</label> <span class="OrderDescription">@Model.Description<span></p>
-      <p><label>Delivery Status:</label> 
-      @if(Model.Fulfilled == false)
-      {
-        <span class="badge status orange">Not Fulfilled</span>
-      }
-      else
-      {
-        <span class="badge status green">Fulfilled</span>
-      }
-      </p>
-      <p><label>Payment Status:</label> 
-      @if(Model.PaymentReceived == false)
-      {
-        <span class="badge payment orange">Awaiting Payment</span>
-      }
-      else
-      {
-        <span class="badge payment green">Paid</span>
-      }
-      </p>
-      <p><label>Cost:</label> <span>$@Model.Cost</span></p>
+@{
+  Layout = "_Layout";
+}
 
-      <a class="btn btn-success" href="/vendors/@Model.VendorID/orders/@Model.ID/edit">Edit this Order</a>        
-      <a class="btn btn-success" href="/vendors/@Model.VendorID">Back to Vendor</a>
-      <a class="btn btn-success" href="/vendors">Show all Vendors</a>
-  </body>
-</html>
+<div class="container">
+  <h2 class="VendorName">@Model.VendorName</h2>
+  <p><label>Order:</label> <span class="id">#@Model.ID</span></p>
+  <p><label>Date:</label> <span class="date">@Model.Date.ToString("d")</span></p>
+  <p><label>Description:</label> <span class="OrderDescription">@Model.Description<span></p>
+  <p><label>Delivery Status:</label> 
+  @if(Model.Fulfilled == false)
+  {
+    <span class="badge status orange">Not Fulfilled</span>
+  }
+  else
+  {
+    <span class="badge status green">Fulfilled</span>
+  }
+  </p>
+  <p><label>Payment Status:</label> 
+  @if(Model.PaymentReceived == false)
+  {
+    <span class="badge payment orange">Awaiting Payment</span>
+  }
+  else
+  {
+    <span class="badge payment green">Paid</span>
+  }
+  </p>
+  <p><label>Cost:</label> <span>$@Model.Cost</span></p>
+
+  <a class="btn btn-success" href="/vendors/@Model.VendorID/orders/@Model.ID/edit">Edit this Order</a>        
+  <a class="btn btn-success" href="/vendors/@Model.VendorID">Back to Vendor</a>
+  <a class="btn btn-success" href="/vendors">Show all Vendors</a>
+</div>

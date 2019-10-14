@@ -1,14 +1,9 @@
 @using PastryTracker.Models;
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <title>Order @Model.ID</title>
-    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
-    <link href="~/css/styles.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
+@{
+  Layout = "_Layout";
+}
+
     <div class="container">
       <h2 class="VendorName">@Model.VendorName</h2>
       <form action="/vendors/@Model.VendorID/orders/@Model.ID" method="post">
@@ -109,5 +104,4 @@
       <button type="submit" class="btn btn-success">Update Order</button>
       <a class="btn btn-success" href="/vendors/@Model.VendorID">Back to Vendor</a>        
       </form>
-  </body>
-</html>
+</div@using PastryTracker.Models;>

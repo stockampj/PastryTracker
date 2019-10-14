@@ -14,3 +14,13 @@ body {
 .orange {
   background-color: #d4a422;
 }
+
+div#navbar {
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100%;
+  color:#CCC;
+  background:#333;
+  padding:8px;
+}

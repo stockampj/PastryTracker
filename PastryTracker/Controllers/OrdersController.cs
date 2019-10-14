@@ -7,7 +7,7 @@ namespace PastryTracker.Controllers
 {
     public class OrdersController : Controller
     {
-        [HttpGet("vendors/{id}/orders/new/")]
+        [HttpGet("/vendors/{id}/orders/new")]
         public ActionResult New(int id)
         {
             Vendor vendor = Vendor.SearchID(id);
@@ -21,10 +21,10 @@ namespace PastryTracker.Controllers
             Order order = Order.SearchID(oID);
             return View(order);
         }
-        [HttpGet("/vendors/{vID}/orders/{id}/edit")]
-        public ActionResult Edit(int id)
+        [HttpGet("/vendors/{vID}/orders/{oID}/edit")]
+        public ActionResult Edit(int oID)
         {
-            Order order = Order.SearchID(id);
+            Order order = Order.SearchID(oID);
             return View(order);
         }
 
